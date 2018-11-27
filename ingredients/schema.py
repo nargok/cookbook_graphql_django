@@ -1,6 +1,6 @@
 import graphene
 from graphene_django.types import DjangoObjectType
-from cookbook.ingredients.models import Category, Ingredient
+from .models import Category, Ingredient
 
 class CategoryType(DjangoObjectType):
   class Meta:
@@ -12,7 +12,7 @@ class IngredientType(DjangoObjectType):
 
 class Query(object):
   all_categories = graphene.List(CategoryType)
-  all_ingredients = graphene.Lis(IngredientType)
+  all_ingredients = graphene.List(IngredientType)
 
   def resolve_all_categories(self, info, **kwargs):
     return Category.objects.all()
